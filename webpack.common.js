@@ -1,16 +1,20 @@
-const path = require('path');
- const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
- module.exports = {
-   entry: {
-     app: './src/index.js',
-   },
-   plugins: [
-     new HtmlWebpackPlugin({
-        template: "./src/template.html",
-     }),
-   ],
-   module: {
+module.exports = {
+  entry: {
+    app: "./src/index.js",
+  },
+  devtool: "eval-source-map",
+  devServer: {
+    watchFiles: ["./src/index.html"],
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: "./src/template.html",
+    }),
+  ],
+  module: {
     rules: [
       {
         test: /\.css$/i,
@@ -23,12 +27,12 @@ const path = require('path');
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
         type: "asset/resource",
-      }            
+      },
     ],
   },
-   output: {
-     filename: '[name].bundle.js',
-     path: path.resolve(__dirname, 'dist'),
-     clean: true,
-   },
- };
+  output: {
+    filename: "main.js",
+    path: path.resolve(__dirname, "dist"),
+    clean: true,
+  },
+};
